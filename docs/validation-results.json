@@ -1,0 +1,113 @@
+[
+  {
+    "report": "build-py310/compatibility-results.xml",
+    "timestamp": "2026-10-02T22:20:14",
+    "backends": {
+      "dittobind": {
+        "passed": 63,
+        "failed": [],
+        "skipped": []
+      },
+      "pybind11": {
+        "passed": 45,
+        "failed": [],
+        "skipped": []
+      }
+    }
+  },
+  {
+    "report": "build-py311/compatibility-results.xml",
+    "timestamp": "2026-10-02T22:20:18",
+    "backends": {
+      "dittobind": {
+        "passed": 62,
+        "failed": [],
+        "skipped": []
+      },
+      "pybind11": {
+        "passed": 44,
+        "failed": [],
+        "skipped": []
+      }
+    }
+  },
+  {
+    "report": "build-msvc/compatibility-results.xml",
+    "timestamp": "2026-10-02T22:20:15",
+    "backends": {
+      "dittobind": {
+        "passed": 72,
+        "failed": [],
+        "skipped": []
+      },
+      "pybind11": {
+        "passed": 49,
+        "failed": [
+          "pybind11.sub_failure",
+          "pybind11.sub_worker"
+        ],
+        "skipped": []
+      }
+    }
+  },
+  {
+    "report": "build-msvc/compatibility-debug-results.xml",
+    "timestamp": "2026-10-02T22:20:23",
+    "backends": {
+      "dittobind": {
+        "passed": 72,
+        "failed": [],
+        "skipped": []
+      },
+      "pybind11": {
+        "passed": 49,
+        "failed": [
+          "pybind11.sub_failure",
+          "pybind11.sub_worker"
+        ],
+        "skipped": []
+      }
+    }
+  },
+  {
+    "report": "build-py314/compatibility-results.xml",
+    "timestamp": "2026-10-02T22:20:15",
+    "backends": {
+      "dittobind": {
+        "passed": 72,
+        "failed": [],
+        "skipped": []
+      },
+      "pybind11": {
+        "passed": 46,
+        "failed": [
+          "pybind11.sub_isolation",
+          "pybind11.sub_worker",
+          "pybind11.config_venv",
+          "pybind11.config_venv_no_site",
+          "pybind11.config_venv_switch"
+        ],
+        "skipped": []
+      }
+    }
+  },
+  {
+    "report": "build-py313t/compatibility-results.xml",
+    "timestamp": "2026-10-02T22:20:15",
+    "backends": {
+      "dittobind": {
+        "passed": 73,
+        "failed": [],
+        "skipped": []
+      },
+      "pybind11": {
+        "passed": 50,
+        "failed": [
+          "pybind11.sub_lifecycle",
+          "pybind11.sub_worker"
+        ],
+        "skipped": []
+      }
+    }
+  }
+]

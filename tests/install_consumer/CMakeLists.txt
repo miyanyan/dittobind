@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.24)
+project(dittobind_consumer LANGUAGES CXX)
+find_package(dittobind CONFIG REQUIRED)
+add_executable(consumer main.cpp)
+target_link_libraries(consumer PRIVATE dittobind::embed)
+set_target_properties(consumer PROPERTIES VS_GLOBAL_VcpkgEnabled false)
+execute_process(COMMAND "${Python_EXECUTABLE}" -c "import sys; print(sys.base_prefix)"
+    OUTPUT_VARIABLE python_home OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+file(TO_CMAKE_PATH "${python_home}" python_home)
+target_compile_definitions(consumer PRIVATE PYTHON_HOME="${python_home}")
+if(WIN32)
+    add_custom_command(TARGET consumer POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:Python::Python>" "$<TARGET_FILE_DIR:consumer>")
+endif()
+enable_testing()
+add_test(NAME consumer.run COMMAND consumer)

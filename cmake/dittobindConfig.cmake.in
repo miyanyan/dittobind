@@ -1,0 +1,18 @@
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.30)
+    set(Python_FIND_ABI ANY ANY ANY ANY)
+endif()
+find_dependency(Python @Python_VERSION_MAJOR@.@Python_VERSION_MINOR@ EXACT COMPONENTS Interpreter Development.Embed)
+find_dependency(Threads)
+execute_process(COMMAND "${Python_EXECUTABLE}" -c
+    "import sysconfig; print(sysconfig.get_config_var('Py_GIL_DISABLED') or 0)"
+    OUTPUT_VARIABLE _dittobind_gil_disabled OUTPUT_STRIP_TRAILING_WHITESPACE
+    COMMAND_ERROR_IS_FATAL ANY)
+if(NOT _dittobind_gil_disabled STREQUAL "@NB_FREE_THREADED@")
+    set(dittobind_FOUND FALSE)
+    set(dittobind_NOT_FOUND_MESSAGE "Python free-threading ABI differs from the installed dittobind build")
+    return()
+endif()
+include("${CMAKE_CURRENT_LIST_DIR}/dittobindTargets.cmake")
+check_required_components(dittobind)
